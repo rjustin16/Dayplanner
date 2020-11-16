@@ -4,6 +4,11 @@ var time = function (hours) {
     hours = hours ? hours : 12;
     return hours + ampm;
   };
+  $(document).on("click", ".saveBtn", function (e){
+    e.preventDefault();
+    let eventtime = $(this).prev().attr("id");
+    saveevent(eventtime);
+});
 let getevent = function (event) {
     let value = localStorage.getItem(event);
     $(`#text${event}`).val(value);
@@ -18,13 +23,13 @@ let plannerdisplay = function () {
     $("#currentDay").text(currenttime);
     for (let i = 9; i < 16; i++) {
       let timeblock =    `<div class="row ">
-      <div class="col-md-3 hour">
+      <div class=" col-sm-3  hour">
               <p> ${time(i)} </p>
       </div>
-      <div id=${i} class="col-md-6 description">
+      <div id=${i} class=" col-sm-6  description">
           <textarea id =text${i} placeholder="Add Event"></textarea>
       </div>
-      <div class="col-md-3 saveBtn">
+      <div class=" col-sm-3  saveBtn">
           <button>Save Event</button>
       </div>
   </div>`
@@ -32,11 +37,7 @@ let plannerdisplay = function () {
       getevent(i);
   };
 };
-$(document).on("click", ".saveBtn", function (e){
-    e.preventDefault();
-    let eventtime = $(this).prev().attr("id");
-    saveevent(eventtime);
-});
+
 let now = new Date().getHours();
 let timecolor = function () {
     $(".description").each(function () {
