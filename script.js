@@ -7,12 +7,12 @@ var time = function (hours) {
   let plannerdisplay = function () {
     let now = moment().format("dddd MMMM Do YYYY");
     $("#currentDay").text(now);
-    for (let i = 10; i < 16; i++) {
+    for (let i = 9; i < 16; i++) {
       let timeblock = `<div class="row ">
           <div class="col-md-3 hour">
                   <p> ${time(i)} </p>
           </div>
-          <div  class="col-md-6 description">
+          <div id=${i} class="col-md-6 description">
               <textarea ></textarea>
           </div>
           <div class="col-md-3 saveBtn">
@@ -22,6 +22,7 @@ var time = function (hours) {
       $(".container").append(timeblock);
     }
   };
+
   let now = new Date().getHours();
   let timecolor = function () {
     $(".description").each(function () {
