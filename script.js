@@ -5,15 +5,15 @@ var time = function (hours) {
     return hours + ampm;
   };
   let plannerdisplay = function () {
-    let now = moment().format("dddd MMMM Do YYYY");
-    $("#currentDay").text(now);
+    let currenttime = moment().format("dddd MMMM Do YYYY");
+    $("#currentDay").text(currenttime);
     for (let i = 9; i < 16; i++) {
       let timeblock = `<div class="row ">
           <div class="col-md-3 hour">
                   <p> ${time(i)} </p>
           </div>
           <div id=${i} class="col-md-6 description">
-              <textarea ></textarea>
+              <textarea></textarea>
           </div>
           <div class="col-md-3 saveBtn">
               <button>Save Event</button>
