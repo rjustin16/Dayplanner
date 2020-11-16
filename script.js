@@ -41,7 +41,7 @@ let plannerdisplay = function () {
 let now = new Date().getHours();
 let timecolor = function () {
     $(".description").each(function () {
-        var hours = parseInt($(this).attr("id"))
+        var hours = $(this).attr("id")
         if (hours == now) {
             $(this).removeClass("future past").addClass("present");
           
