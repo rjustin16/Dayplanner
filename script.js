@@ -4,27 +4,41 @@ var time = function (hours) {
     hours = hours ? hours : 12;
     return hours + ampm;
   };
-  let plannerdisplay = function () {
+let getevent = function (event) {
+    let value = localStorage.getItem(event);
+    $(`#text${event}`).val(value);
+};
+let saveevent = function (save) {
+    let planitem = $(`#text${save}`).val().trim(); 
+    let now = save;
+    localStorage.setItem(now, planitem);
+};
+let plannerdisplay = function () {
     let currenttime = moment().format("dddd MMMM Do YYYY");
     $("#currentDay").text(currenttime);
     for (let i = 9; i < 16; i++) {
-      let timeblock = `<div class="row ">
-          <div class="col-md-3 hour">
-                  <p> ${time(i)} </p>
-          </div>
-          <div id=${i} class="col-md-6 description">
-              <textarea></textarea>
-          </div>
-          <div class="col-md-3 saveBtn">
-              <button>Save Event</button>
-          </div>
-      </div>`;
+      let timeblock =    `<div class="row ">
+      <div class="col-md-2 hour">
+              <p> ${time(i)} </p>
+      </div>
+      <div id=${i} class="col-md-8 description">
+          <textarea id =text${i} placeholder="Add Event"></textarea>
+      </div>
+      <div class="col-md-2 saveBtn">
+          <button>Save Event</button>
+      </div>
+  </div>`
       $(".container").append(timeblock);
-    }
+      getevent(i);
   };
-
-  let now = new Date().getHours();
-  let timecolor = function () {
+};
+$(document).on("click", ".saveBtn", function (e){
+    e.preventDefault();
+    let eventtime = $(this).prev().attr("id");
+    saveevent(eventtime);
+});
+let now = new Date().getHours();
+let timecolor = function () {
     $(".description").each(function () {
         var hours = parseInt($(this).attr("id"))
         if (hours == now) {
@@ -38,11 +52,6 @@ var time = function (hours) {
       }
     });
   };
-
-  $(document).on("click", ".saveBtn", function (e){
-    e.preventDefault();
-
-  });
-  plannerdisplay();
-  timecolor();
-  setInterval(timecolor, 60000);
+plannerdisplay();
+timecolor();
+setInterval(timecolor, 60000);
