@@ -12,19 +12,15 @@ var time = function (hours) {
           <div class="col-md-3 hour">
                   <p> ${time(i)} </p>
           </div>
-          <div id=${i} class="col-md-6 description">
-              <textarea id =input${i} placeholder="Add event here..."></textarea>
+          <div  class="col-md-6 description">
+              <textarea ></textarea>
           </div>
           <div class="col-md-3 saveBtn">
-              <button class="fas fa-save"></button>
+              <button>Save Event</button>
           </div>
       </div>`;
       $(".container").append(timeblock);
     }
-  };
-  let retrieveEvents = function (key) {
-    let value = localStorage.getItem(key);
-    $(`#text${key}`).val(value);
   };
   let now = new Date().getHours();
   let timecolor = function () {
